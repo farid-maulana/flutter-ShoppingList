@@ -10,38 +10,66 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        margin: const EdgeInsets.all(8),
-        child: ListView.builder(
-          padding: const EdgeInsets.all(8),
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            final item = items[index];
-            return InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, '/item', arguments: item);
-              },
-              child: Card(
-                child: Container(
-                  margin: const EdgeInsets.all(8),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(item.name),
-                      ),
-                      Expanded(
-                        child: Text(
-                          item.price.toString(),
-                          textAlign: TextAlign.end,
+      appBar: AppBar(
+        title: const Text('Shopping List'),
+      ),
+      body: Column(
+        children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            margin: const EdgeInsets.only(top: 16, left: 8),
+            child: const Text(
+              'Home',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.all(8),
+              child: ListView.builder(
+                padding: const EdgeInsets.all(8),
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  final item = items[index];
+                  return InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/item', arguments: item);
+                    },
+                    child: Card(
+                      child: Container(
+                        margin: const EdgeInsets.all(16),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                item.name,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Text(
+                                'Rp ${item.price.toString()},-',
+                                textAlign: TextAlign.end,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                },
               ),
-            );
-          },
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -9,6 +9,9 @@ class ItemPage extends StatelessWidget {
     final Item itemArgs = ModalRoute.of(context)!.settings.arguments as Item;
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Shopping List'),
+      ),
       body: SafeArea(
         child: Container(
           margin: const EdgeInsets.all(8),
